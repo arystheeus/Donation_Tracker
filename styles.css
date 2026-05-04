@@ -1,0 +1,364 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cyan: #0bb8d4;
+  --cyan-dark: #0899b2;
+  --black: #111;
+  --white: #fff;
+  --text-dark: #222;
+  --text-muted: #666;
+}
+
+body {
+  font-family: 'Catamaran', sans-serif;
+  color: var(--text-dark);
+  background: var(--white);
+}
+
+/* ── STICKY HEADER ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 52px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.header-logo {
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--white);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 5px 10px;
+  gap: 8px;
+  width: 180px;
+}
+
+.search-bar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ccc;
+  font-family: 'Catamaran', sans-serif;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+.search-bar input::placeholder { color: #888; }
+
+.search-bar svg {
+  stroke: #888;
+  flex-shrink: 0;
+}
+
+/* ── MAIN / HERO ── */
+.main {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.mainbg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--cyan) 0%, var(--cyan) 45%, #1a1a1a 60%, #000 100%);
+}
+
+.mainImage {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 55%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  mask-image: linear-gradient(to right, transparent 0%, black 30%);
+}
+
+.mainContent {
+  position: relative;
+  z-index: 2;
+  padding: 0 52px;
+  max-width: 400px;
+}
+
+.mainContent h1 {
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.mainContent p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* ── MISSION ── */
+.mission {
+  text-align: center;
+  padding: 56px 32px 48px;
+  background: var(--white);
+}
+
+.missionText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.missionText::before,
+.missionText::after {
+  content: '';
+  flex: 1;
+  max-width: 160px;
+  height: 1px;
+  background: #ccc;
+}
+
+.missionText h2 {
+  font-family: 'Caudex', serif;
+  font-size: 1.65rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  letter-spacing: 0.01em;
+}
+
+.mission p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+
+.missionCards {
+  font-family: 'Caudex', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-dark);
+}
+
+/* ── CARDS ── */
+.cards-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 0 32px 64px;
+  background: var(--white);
+}
+
+/* shared card styles */
+.card1, .card2, .card3 {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  height: 120px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+
+.card1:hover, .card2:hover, .card3:hover {
+  transform: translateY(-4px) scale(1.012);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.22);
+}
+
+.card1:active, .card2:active, .card3:active {
+  transform: translateY(-1px) scale(1.005);
+}
+
+/*hover */
+.card1::before, .card2::before, .card3::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  z-index: 5;
+  transition: background 0.2s;
+  pointer-events: none;
+}
+.card1:hover::before, .card2:hover::before, .card3:hover::before {
+  background: rgba(255,255,255,0.05);
+}
+
+/* card photo */
+.cardImage {
+  position: absolute;
+  inset: 0;
+  width: 60%;
+  background-size: cover;
+  background-position: center;
+  background-color: #bbb; /* placeholder */
+}
+
+/* gradient*/
+.card1 .cardImage,
+.card3 .cardImage {
+  left: 0;
+}
+.card1 .cardImage::after,
+.card3 .cardImage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 30%, var(--cyan) 90%);
+}
+
+/* card2: photo right, text left */
+.card2 .cardImage {
+  left: auto;
+  right: 0;
+}
+.card2 .cardImage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, transparent 30%, var(--cyan) 90%);
+}
+
+/* card text panel */
+.cardText {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 55%;
+  background: var(--cyan);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 20px 28px 10px;
+  z-index: 2;
+}
+
+/* card1 & card3: text on right */
+.card1 .cardText,
+.card3 .cardText {
+  right: 0;
+  align-items: flex-end;
+}
+
+/* card2: text on left */
+.card2 .cardText {
+  left: 0;
+  align-items: flex-start;
+  padding: 16px 10px 28px 20px;
+}
+
+.cardLabel {
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.05em;
+}
+
+.cardTitle {
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.cardHint {
+  position: absolute;
+  bottom: 7px;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.06em;
+  z-index: 3;
+  font-style: italic;
+}
+
+.card1 .cardHint, .card3 .cardHint { right: 14px; }
+.card2 .cardHint { left: 14px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  color: #aaa;
+  padding: 28px 40px 20px;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.footerColm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+footer a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 0.82rem;
+  transition: color 0.2s;
+}
+footer a:hover { color: var(--cyan); }
+
+.footerSocials {
+  display: flex;
+  gap: 28px;
+  padding-top: 10px;
+  border-top: 1px solid #2a2a2a;
+}
+
+.footerSocials a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem;
+  color: #aaa;
+}
+
+.socialIcon {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #555;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: #ccc;
+}
+
