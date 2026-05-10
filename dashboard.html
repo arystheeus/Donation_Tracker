@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <h1>Dashboard<br>Admin</h1>
+    <span>Donation Management</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-label">Navigation</div>
+    <a class="nav-item active" onclick="showPage('overview')">Overview</a>
+    <a class="nav-item" onclick="showPage('monetary')">Monetary Table</a>
+    <a class="nav-item" onclick="showPage('items')">Items Table</a>
+  </nav>
+</aside>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h2 id="pageHeaderTitle">Overview</h2>
+  </div>
+
+  <!-- ══════════ OVERVIEW PAGE ══════════ -->
+  <div class="page active" id="page-overview">
+
+    <h1 class="page-title">Overview</h1>
+        <!-- Navigation buttons -->
+    <div class="overview-nav-row">
+      <button class="nav-btn" onclick="showPage('monetary')">Go to Monetary Table <span class="arrow">▶</span></button>
+      <button class="nav-btn" onclick="showPage('items')">Go to Items Table <span class="arrow">▶</span></button>
+    </div>
+
+
+    <div class="overview-top">
+  
+
+      <!-- Left: Overall + Item/Monetary -->
+      <div class="overview-left">
+        <div class="stat-card large">
+          <div class="stat-card-label">Overall Donations</div>
+          <div class="stat-card-value" id="ov-overall">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Item Donations</div>
+          <div class="stat-card-value" id="ov-items">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Monetary Donations</div>
+          <div class="stat-card-value" id="ov-monetary">0</div>
+        </div>
+      </div>
+
+      <!-- Right: Drives -->
+      <div class="overview-right">
+        <div class="drives-row">
+          <div class="drive-card">
+            <div class="drive-card-title">Drive 1</div>
+            <div class="drive-stat-row">
+              <span class="drive-stat-label">Item Donations</span>
+              <span class="drive-stat-value" id="d1-items">0</span>
+            </div>
+            <div class="drive-stat-row">
+              <span class="drive-stat-label">Monetary Donations</span>
+              <span class="drive-stat-value" id="d1-monetary">0</span>
+            </div>
+            <div class="drive-stat-row drive-total">
+              <span class="drive-stat-label">Total Donations</span>
+              <span class="drive-stat-value" id="d1-total">0</span>
+            </div>
+          </div>
+          <div class="drive-card">
+            <div class="drive-card-title">Drive 2</div>
+            <div class="drive-stat-row">
+              <span class="drive-stat-label">Item Donations</span>
+              <span class="drive-stat-value" id="d2-items">0</span>
+            </div>
+            <div class="drive-stat-row">
+              <span class="drive-stat-label">Monetary Donations</span>
+              <span class="drive-stat-value" id="d2-monetary">0</span>
+            </div>
+            <div class="drive-stat-row drive-total">
+              <span class="drive-stat-label">Total Donations</span>
+              <span class="drive-stat-value" id="d2-total">0</span>
+            </div>
+          </div>
+          <div class="drive-card">
+            <div class="drive-card-title">Drive 3</div>
+            <div class="drive-stat-row">
+              <span class="drive-stat-label">Item Donations</span>
+              <span class="drive-stat-value" id="d3-items">0</span>
+            </div>
+            <div class="drive-stat-row">
+              <span class="drive-stat-label">Monetary Donations</span>
+              <span class="drive-stat-value" id="d3-monetary">0</span>
+            </div>
+            <div class="drive-stat-row drive-total">
+              <span class="drive-stat-label">Total Donations</span>
+              <span class="drive-stat-value" id="d3-total">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search..." />
+    </div>
+
+    <!-- Donors Table -->
+    <div class="table-section">
+      <div class="table-section-title">Donators</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Donation Type</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody id="overview-table">
+          <!-- PHP will populate rows here -->
+          <tr><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════ MONETARY TABLE PAGE ══════════ -->
+  <div class="page" id="page-monetary">
+
+    <h1 class="page-title">Monetary Table</h1>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showPage('items')">Go to Items Table <span class="arrow">▶</span></button>
+      <button class="nav-btn" onclick="showPage('overview')">Back to Overview <span class="arrow">▶</span></button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card stat-card--narrow">
+        <div class="stat-card-label">Total Donations</div>
+        <div class="stat-card-value" id="mon-total-donations">0</div>
+      </div>
+      <div class="stat-card stat-card--narrow">
+        <div class="stat-card-label">Total Amount</div>
+        <div class="stat-card-value" id="mon-total-amount">₱0</div>
+      </div>
+      <div class="drives-row">
+        <div class="drive-card">
+          <div class="drive-card-title">Drive 1</div>
+          <div class="drive-stat-row">
+            <span class="drive-stat-label">Total Donators</span>
+            <span class="drive-stat-value" id="md1-donors">0</span>
+          </div>
+          <div class="drive-stat-row drive-total">
+            <span class="drive-stat-label">Total Amount</span>
+            <span class="drive-stat-value" id="md1-amount">₱0</span>
+          </div>
+        </div>
+        <div class="drive-card">
+          <div class="drive-card-title">Drive 2</div>
+          <div class="drive-stat-row">
+            <span class="drive-stat-label">Total Donators</span>
+            <span class="drive-stat-value" id="md2-donors">0</span>
+          </div>
+          <div class="drive-stat-row drive-total">
+            <span class="drive-stat-label">Total Amount</span>
+            <span class="drive-stat-value" id="md2-amount">₱0</span>
+          </div>
+        </div>
+        <div class="drive-card">
+          <div class="drive-card-title">Drive 3</div>
+          <div class="drive-stat-row">
+            <span class="drive-stat-label">Total Donators</span>
+            <span class="drive-stat-value" id="md3-donors">0</span>
+          </div>
+          <div class="drive-stat-row drive-total">
+            <span class="drive-stat-label">Total Amount</span>
+            <span class="drive-stat-value" id="md3-amount">₱0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search..." />
+    </div>
+
+    <!-- Monetary Donors Table -->
+    <div class="table-section">
+      <div class="table-section-title">Donators</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Drive</th>
+            <th>Amount</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody id="monetary-table">
+          <!-- PHP will populate rows here -->
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════ ITEMS TABLE PAGE ══════════ -->
+  <div class="page" id="page-items">
+
+    <h1 class="page-title">Item Table</h1>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showPage('monetary')">Go to Monetary Table <span class="arrow">▶</span></button>
+      <button class="nav-btn" onclick="showPage('overview')">Back to Overview <span class="arrow">▶</span></button>
+    </div>
+
+    <div class="items-top-row">
+      <!-- Category totals -->
+      <div class="items-categories">
+        <div class="stat-card stat-card--narrow">
+          <div class="stat-card-label">Total Donations</div>
+          <div class="stat-card-value" id="it-total">0</div>
+        </div>
+        <div class="category-card">
+          <div class="category-card-label">Clothes</div>
+          <div class="category-card-value" id="it-clothes">0</div>
+        </div>
+        <div class="category-card">
+          <div class="category-card-label">Food</div>
+          <div class="category-card-value" id="it-food">0</div>
+        </div>
+        <div class="category-card">
+          <div class="category-card-label">Footwear</div>
+          <div class="category-card-value" id="it-footwear">0</div>
+        </div>
+        <div class="category-card">
+          <div class="category-card-label">Learning Materials</div>
+          <div class="category-card-value" id="it-learning">0</div>
+        </div>
+      </div>
+
+      <!-- Drive breakdown -->
+      <div class="drives-row drives-row-items">
+        <div class="drive-card">
+          <div class="drive-card-title">Drive 1</div>
+          <div class="drive-items-grid">
+            <div><div class="drive-stat-label">Items</div><div class="drive-stat-value drive-stat-value--sm" id="id1-items">0</div></div>
+            <div><div class="drive-stat-label">Food</div><div class="drive-stat-value drive-stat-value--sm" id="id1-food">0</div></div>
+            <div><div class="drive-stat-label">Footwear</div><div class="drive-stat-value drive-stat-value--sm" id="id1-footwear">0</div></div>
+            <div><div class="drive-stat-label">Learning</div><div class="drive-stat-value drive-stat-value--sm" id="id1-learning">0</div></div>
+          </div>
+          <div class="drive-stat-row drive-total">
+            <span class="drive-stat-label">Total Amount</span>
+            <span class="drive-stat-value" id="id1-total">0</span>
+          </div>
+        </div>
+        <div class="drive-card">
+          <div class="drive-card-title">Drive 2</div>
+          <div class="drive-items-grid">
+            <div><div class="drive-stat-label">Items</div><div class="drive-stat-value drive-stat-value--sm" id="id2-items">0</div></div>
+            <div><div class="drive-stat-label">Food</div><div class="drive-stat-value drive-stat-value--sm" id="id2-food">0</div></div>
+            <div><div class="drive-stat-label">Footwear</div><div class="drive-stat-value drive-stat-value--sm" id="id2-footwear">0</div></div>
+            <div><div class="drive-stat-label">Learning</div><div class="drive-stat-value drive-stat-value--sm" id="id2-learning">0</div></div>
+          </div>
+          <div class="drive-stat-row drive-total">
+            <span class="drive-stat-label">Total Amount</span>
+            <span class="drive-stat-value" id="id2-total">0</span>
+          </div>
+        </div>
+        <div class="drive-card">
+          <div class="drive-card-title">Drive 3</div>
+          <div class="drive-items-grid">
+            <div><div class="drive-stat-label">Items</div><div class="drive-stat-value drive-stat-value--sm" id="id3-items">0</div></div>
+            <div><div class="drive-stat-label">Food</div><div class="drive-stat-value drive-stat-value--sm" id="id3-food">0</div></div>
+            <div><div class="drive-stat-label">Footwear</div><div class="drive-stat-value drive-stat-value--sm" id="id3-footwear">0</div></div>
+            <div><div class="drive-stat-label">Learning</div><div class="drive-stat-value drive-stat-value--sm" id="id3-learning">0</div></div>
+          </div>
+          <div class="drive-stat-row drive-total">
+            <span class="drive-stat-label">Total Amount</span>
+            <span class="drive-stat-value" id="id3-total">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search..." />
+    </div>
+
+    <!-- Items Donors Table -->
+    <div class="table-section">
+      <div class="table-section-title">Donators</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Drive</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody id="items-table">
+          <!-- PHP will populate rows here -->
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- .main -->
+
+<script>
+  const titles = { overview: 'Overview', monetary: 'Monetary Table', items: 'Item Table' };
+  const navItems = document.querySelectorAll('.nav-item');
+
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.getElementById('pageHeaderTitle').textContent = titles[name];
+    navItems.forEach(n => {
+      n.classList.toggle('active', n.textContent.trim().toLowerCase().includes(
+        name === 'overview' ? 'over' : name === 'monetary' ? 'monetary' : 'items'
+      ));
+    });
+  }
+</script>
+</body>
+</html>
